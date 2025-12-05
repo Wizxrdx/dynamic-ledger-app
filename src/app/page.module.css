@@ -1,141 +1,184 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
+/* app/page.module.css */
 
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+/* --- COLORS AND VARIABLES --- */
+:root {
+    --primary-color: #4f46e5; /* Indigo-600 */
+    --secondary-color: #eef2ff; /* Indigo-50 */
+    --border-color: #e5e7eb; /* Gray-200 */
+    --error-color: #b91c1c; /* Red */
+    --success-bg: #d1fae5; /* Green-100 */
+    --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-.main {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+/* --- MAIN LAYOUT/CARD STYLES --- */
+.container {
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    padding: 32px;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+.card {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-bottom: 32px;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
+.header {
+    padding: 16px;
+    margin-bottom: 32px;
 }
 
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
+/* --- INPUTS --- */
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
 }
 
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
+.inputField {
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
+.inputField:focus {
+    outline: 2px solid var(--primary-color);
+    border-color: var(--primary-color);
 }
 
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
-}
+/* --- FORM ROW STYLING (BATCH ENTRY) --- */
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-}
-
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
+.transactionRow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+    align-items: flex-start;
+    border-radius: 4px;
+    transition: background-color 0.15s;
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
+/* Alternating background for the input form rows */
+.transactionRow:nth-child(even) {
+    background-color: #fff;
+}
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+.transactionRow:nth-child(odd) {
+    background-color: var(--secondary-color);
+}
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+.profitBox {
+    padding: 8px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+}
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
-  }
+.profitText {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+
+/* --- TABLE/HISTORY STYLES --- */
+.historyTable {
+    min-width: 100%;
+    border-collapse: collapse;
+}
+
+.historyTable thead {
+    background-color: #f9fafb;
+}
+
+.historyTable th {
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #6b7280;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.historyRow td {
+    padding: 8px 12px;
+    font-size: 14px;
+    white-space: nowrap;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.historyRow:nth-child(even) {
+    background-color: #fff;
+}
+.historyRow:nth-child(odd) {
+    background-color: #f9fafb;
+}
+
+.tableDataAlignRight {
+    text-align: right;
+}
+
+.tableDataAlignLeft {
+    text-align: left;
+}
+
+.tableDataAlignCenter {
+    text-align: center;
+}
+
+.profitData {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-family: var(--font-mono);
+}
+
+.inputDetails {
+    font-size: 12px;
+    color: #9ca3af; /* Gray-400 */
+    font-style: italic;
+}
+
+/* --- BUTTONS --- */
+.primaryButton {
+    padding: 12px 24px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    border: none;
+}
+.primaryButton:hover:not(:disabled) {
+    background-color: #3730a3; /* darker indigo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.primaryButton:disabled {
+    background-color: #93c5fd; /* light blue for disabled */
+    cursor: not-allowed;
+}
+
+.analysisButton {
+    background-color: #10b981; /* green */
+}
+.analysisButton:hover:not(:disabled) {
+    background-color: #059669; /* darker green */
+}
+
+.removeButton {
+    font-size: 12px; 
+    color: #ef4444; 
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 4px;
+    transition: color 0.15s;
 }
