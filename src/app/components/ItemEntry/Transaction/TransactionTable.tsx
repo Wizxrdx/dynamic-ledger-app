@@ -4,7 +4,7 @@ import TransactionRow from './TransactionRow';
 import { ExpenseCategory, getDefaultTransaction, ItemEntryType, NewTransactionEntry } from '@/lib/utils';
 
 interface TransactionTableProps {
-    onSelectMode: (mode: ItemEntryType | null) => void;
+    onClose: () => void;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     nextCalculation: { results: Record<string, { finalValue: number; rate?: number }> }[];
     currentRates: Record<string, number>;
@@ -12,9 +12,7 @@ interface TransactionTableProps {
     borderColor: string;
 }
 
-export default function TransactionTable({ onSelectMode, handleSubmit, nextCalculation, currentRates, primaryColor, borderColor }: TransactionTableProps) {
-    console.log('onSelectMode:', onSelectMode, typeof onSelectMode); // Add this
-    
+export default function TransactionTable({ onClose, handleSubmit, nextCalculation, currentRates, primaryColor, borderColor }: TransactionTableProps) {
     const [transactionDate, setTransactionDate] = React.useState<string>('');
     const [newTransactionEntries, setNewTransactionEntries] = React.useState<NewTransactionEntry[]>([getDefaultTransaction()]);
     const [loading, setLoading] = React.useState<boolean>(false);
@@ -29,14 +27,15 @@ export default function TransactionTable({ onSelectMode, handleSubmit, nextCalcu
                 <button
                     type="button"
                     className={styles.closeButton}
-                    onClick={() => onSelectMode(null)}
+                    onClick={() => onClose()}
                     style={{
                         margin: '8px',
-                        padding: '12px',
+                        padding: '8px',
                         border: `1px solid ${primaryColor}`, 
                         color: primaryColor, 
                         borderRadius: '8px',
                         fontWeight: 'bold',
+                        fontSize: '16px',
                         cursor: 'pointer',
                         backgroundColor: 'white'
                     }}
