@@ -105,4 +105,8 @@ export const getDefaultTransaction = (sales = '', cost = '', utilities = '', sal
     sales, cost, utilities, salary, profit: ''
 });
 
+export const totalRates = (rates: Rates): number => {
+    return Object.values(rates).reduce((acc, rate) => acc + rate, 0);
+};
+
 export const EXPENSE_CATEGORIES: ExpenseCategory[] = ['cost', 'utilities', 'salary', 'profit'];
