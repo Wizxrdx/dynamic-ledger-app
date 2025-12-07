@@ -2,7 +2,7 @@
 export type ExpenseCategory = 'cost' | 'utilities' | 'salary' | 'profit';
 export type Rates = Record<ExpenseCategory, number>;
 
-export const INITIAL_RATES: Rates = { cost: 0.50, utilities: 0.30, salary: 0.10, profit: 0.10 };
+export const INITIAL_RATES: Rates = { cost: 50, utilities: 30, salary: 10, profit: 10 };
 
 export enum ItemEntryType {
     RATES = 'RATES',
