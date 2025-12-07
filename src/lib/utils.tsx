@@ -2,7 +2,7 @@
 export type ExpenseCategory = 'cost' | 'utilities' | 'salary' | 'profit';
 export type Rates = Record<ExpenseCategory, number>;
 
-export const INITIAL_RATES: Rates = { cost: 0.50, utilities: 0.30, salary: 0.10, profit: 0.10 };
+export const INITIAL_RATES: Rates = { cost: 50, utilities: 30, salary: 10, profit: 10 };
 
 export enum ItemEntryType {
     RATES = 'RATES',
@@ -104,5 +104,9 @@ export const calculateExpense = (sales: number, input: string | number, currentR
 export const getDefaultTransaction = (sales = '', cost = '', utilities = '', salary = ''): NewTransactionEntry => ({
     sales, cost, utilities, salary, profit: ''
 });
+
+export const totalRates = (rates: Rates): number => {
+    return Object.values(rates).reduce((acc, rate) => acc + rate, 0);
+};
 
 export const EXPENSE_CATEGORIES: ExpenseCategory[] = ['cost', 'utilities', 'salary', 'profit'];

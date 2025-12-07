@@ -87,6 +87,16 @@
     color: var(--primary-color);
 }
 
+/* --- FORM ROW STYLING (RATE ENTRY) --- */
+.rateRow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    padding: 16px;
+    align-items: flex-start;
+    transition: background-color 0.15s;
+}
+
 
 /* --- TABLE/HISTORY STYLES --- */
 .historyTable {
