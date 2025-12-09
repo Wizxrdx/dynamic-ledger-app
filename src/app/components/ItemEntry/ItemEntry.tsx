@@ -19,7 +19,7 @@ export default function ItemEntry({ handleSubmit, nextCalculation, currentRates,
         setEntryType(mode);
     }
 
-    const closeButton = () => {
+    const closeItemEntry = () => {
         setEntryType(null);
     }
 
@@ -41,6 +41,10 @@ export default function ItemEntry({ handleSubmit, nextCalculation, currentRates,
             }
             {entryType === ItemEntryType.RATES &&
                 <RateTable
+                    prevRates={currentRates as Record<any, number>}
+                    onClose={closeItemEntry}
+                    primaryColor={primaryColor}
+                    borderColor={borderColor}
                     handleSubmit={handleSubmit}
                 />
             }

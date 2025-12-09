@@ -11,8 +11,7 @@ interface RateTableProps {
     borderColor: string;
 }
 
-export default function RateTable
-({ prevRates, handleSubmit, onClose, primaryColor, borderColor }: RateTableProps) {
+export default function RateTable({ prevRates, handleSubmit, onClose, primaryColor, borderColor }: RateTableProps) {
     const [newRates, setNewRates] = React.useState<Rates>(INITIAL_RATES);
     const [canSave, setCanSave] = React.useState<boolean>(false);
     const [errorMessage, setErrorMessage] = React.useState<string>('');
