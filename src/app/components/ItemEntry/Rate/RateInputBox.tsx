@@ -1,8 +1,17 @@
 import styles from '../../../page.module.css';
 import { ExpenseCategory, Rates } from "@/lib/utils";
 
+interface RateInputBoxProps {
+    newRates: Rates;
+    setNewRates: React.Dispatch<React.SetStateAction<Rates>>;
+    prevRates: Record<ExpenseCategory, number>;
+    primaryColor: string;
+    category: ExpenseCategory;
+    label: string;
+};
+
 // Helper component for input fields
-export default function RateInputBox({ newRates, setNewRates, prevRates, primaryColor, category, label }: { newRates: Rates, setNewRates: React.Dispatch<React.SetStateAction<Rates>>, prevRates: Record<ExpenseCategory, number>, primaryColor: string, category: ExpenseCategory, label: string }) {
+export default function RateInputBox({ newRates, setNewRates, prevRates, primaryColor, category, label }: RateInputBoxProps) {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#4b5563', textTransform: 'uppercase', marginBottom: '4px' }}>{label}</label>
