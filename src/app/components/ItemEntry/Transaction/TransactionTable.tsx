@@ -4,7 +4,7 @@ import TransactionRow from './TransactionRow';
 import { ExpenseCategory, getDefaultTransaction, ItemEntryType, NewTransactionEntry } from '@/lib/utils';
 
 interface TransactionTableProps {
-    onSelectMode: (mode: ItemEntryType | null) => void;
+    onClose: () => void;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     nextCalculation: { results: Record<string, { finalValue: number; rate?: number }> }[];
     currentRates: Record<string, number>;
@@ -12,9 +12,7 @@ interface TransactionTableProps {
     borderColor: string;
 }
 
-export default function TransactionTable({ onSelectMode, handleSubmit, nextCalculation, currentRates, primaryColor, borderColor }: TransactionTableProps) {
-    console.log('onSelectMode:', onSelectMode, typeof onSelectMode); // Add this
-    
+export default function TransactionTable({ onClose, handleSubmit, nextCalculation, currentRates, primaryColor, borderColor }: TransactionTableProps) {
     const [transactionDate, setTransactionDate] = React.useState<string>('');
     const [newTransactionEntries, setNewTransactionEntries] = React.useState<NewTransactionEntry[]>([getDefaultTransaction()]);
     const [loading, setLoading] = React.useState<boolean>(false);
@@ -25,8 +23,27 @@ export default function TransactionTable({ onSelectMode, handleSubmit, nextCalcu
 
     return (
         <form onSubmit={handleSubmit} className={styles.card} style={{ border: `1px solid ${primaryColor}` }}>
-            <button type="button" className={styles.closeButton} onClick={() => onSelectMode(null)}>&times;</button>
-            <h2 style={{ fontSize: '20px', fontWeight: 'bold', color: primaryColor, marginBottom: '16px', borderBottom: `1px solid ${borderColor}`, paddingBottom: '8px' }}>New Entry Batch (All use the same date)</h2>
+            <div style={{ display: 'flex', alignItems: 'left', borderTop: `1px solid ${borderColor}`, borderBottom: `1px solid ${borderColor}`, marginBottom: '16px' }}>
+                <button
+                    type="button"
+                    className={styles.closeButton}
+                    onClick={() => onClose()}
+                    style={{
+                        margin: '8px',
+                        padding: '8px',
+                        border: `1px solid ${primaryColor}`, 
+                        color: primaryColor, 
+                        borderRadius: '8px',
+                        fontWeight: 'bold',
+                        fontSize: '16px',
+                        cursor: 'pointer',
+                        backgroundColor: 'white'
+                    }}
+                >
+                    &times;
+                </button>
+                <h2 style={{ margin: '4px', fontSize: '20px', fontWeight: 'bold', color: primaryColor, alignContent: 'center' }}>New Entry Batch</h2>
+            </div>
             
             <div className={styles.inputGroup}>
                 <label style={{ fontSize: '14px', fontWeight: 'bold', color: '#4b5563', textTransform: 'uppercase', marginBottom: '4px' }}>Common Date for All Rows</label>

@@ -19,6 +19,10 @@ export default function ItemEntry({ handleSubmit, nextCalculation, currentRates,
         setEntryType(mode);
     }
 
+    const closeButton = () => {
+        setEntryType(null);
+    }
+
     return (
         <div>
             {entryType === null && <ItemEntrySelection
@@ -27,7 +31,7 @@ export default function ItemEntry({ handleSubmit, nextCalculation, currentRates,
             />}
             {entryType === ItemEntryType.TRANSACTIONS &&
                 <TransactionTable 
-                    onSelectMode={handleModeChange}
+                    onClose={closeButton}
                     handleSubmit={handleSubmit}
                     nextCalculation={nextCalculation}
                     currentRates={currentRates}
