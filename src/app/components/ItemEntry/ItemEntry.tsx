@@ -31,7 +31,7 @@ export default function ItemEntry({ handleSubmit, nextCalculation, currentRates,
             />}
             {entryType === ItemEntryType.TRANSACTIONS &&
                 <TransactionTable 
-                    onSelectMode={handleModeChange}
+                    onClose={closeButton}
                     handleSubmit={handleSubmit}
                     nextCalculation={nextCalculation}
                     currentRates={currentRates}
